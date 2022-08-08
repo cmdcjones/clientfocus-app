@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<nav>
+    <h1>clientfocus</h1>
+    <ul>
+    <!-- If logged in -->
+        <li><span>Username Here</span></li>
+        <li>Log Out</li>
+    <!-- If not logged in-->
+        <li>Register</li>
+        <li>Log In</li>
+    </ul>
+</nav>
+<body>
+    <header>
+        {% block header %}{% endblock %}
+    </header>
+    <!-- If there are flashed messages -->
+        <div class="flash"></div>
+    {% block content %}{% endblock %}
+</body>
+</html>

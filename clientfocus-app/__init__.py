@@ -33,6 +33,8 @@ def create_app(test_config=None):
     from . import auth
 
     from . import trainer
+    app.register_blueprint(trainer.bp)
+    app.add_url_rule('/', endpoint='index')
 
     from . import client
 
