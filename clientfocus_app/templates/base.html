@@ -9,20 +9,22 @@
 <nav>
     <h1>clientfocus</h1>
     <ul>
-    <!-- If logged in -->
-        <li><span>Username Here</span></li>
+    {% if g.user %}
+        <li><span>{{ g.user['first_name'] }} {{g.user['last_name'] }}</span></li>
         <li>Log Out</li>
-    <!-- If not logged in-->
-        <li>Register</li>
-        <li>Log In</li>
+    {% else %}
+        <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+        <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
+    {% endif %}
     </ul>
 </nav>
 <body>
     <header>
         {% block header %}{% endblock %}
     </header>
-    <!-- If there are flashed messages -->
-        <div class="flash"></div>
+    {% for message in get_flashed_messages() %}
+        <div class="flash">{{ message }}</div>
+    {% endfor %}
     {% block content %}{% endblock %}
 </body>
 </html>

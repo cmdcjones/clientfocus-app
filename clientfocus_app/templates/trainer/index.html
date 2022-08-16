@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Username Here - Trainer Home{% endblock %}
+{% block title %}{{ g.user['first_name'] }} {{ g.user['last_name'] }} - Trainer Home{% endblock %}
 
 {% block header %}<h2>Welcome, here are your list of clients:</h2>{% endblock %}
 
