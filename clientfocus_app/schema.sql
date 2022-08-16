@@ -16,28 +16,26 @@ CREATE TABLE client (
     goals TEXT,
     notes TEXT,
     FOREIGN KEY (trainer_id) REFERENCES user (id)
+        ON DELETE CASCADE
 );
 
 CREATE TABLE workout (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     client_id INTEGER NOT NULL,
-    exercise_log_id INTEGER NOT NULL,
     name TEXT NOT NULL,
-    FOREIGN KEY (client_id) REFERENCES client (id),
-    FOREIGN KEY (exercise_log_id) REFERENCES exercise_log (id)
+    date TEXT NOT NULL,
+    FOREIGN KEY (client_id) REFERENCES client (id)
+        ON DELETE CASCADE
 );
 
-CREATE TABLE exercise_log (
+CREATE TABLE exercises (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     workout_id INTEGER NOT NULL,
     name TEXT NOT NULL,
-    set_one TEXT,
-    set_two TEXT,
-    set_three TEXT,
-    set_four TEXT,
-    set_five TEXT,
+    set_number INTEGER NOT NULL,
+    weight TEXT NOT NULL,
+    rep_count TEXT NOT NULL,
     notes TEXT,
     FOREIGN KEY (workout_id) REFERENCES workout (id)
+        ON DELETE CASCADE
 );
-
-

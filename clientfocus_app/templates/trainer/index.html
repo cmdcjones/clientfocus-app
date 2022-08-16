@@ -6,6 +6,6 @@
 
 {% block content %}
 {% for client in clients %}
-<div class="client">{{ client }}</div>
+<div class="client">{{ client['name'] }}</div>
 {% endfor %}
 {% endblock %}
