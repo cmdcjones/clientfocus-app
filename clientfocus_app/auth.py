@@ -70,6 +70,11 @@ def login():
     
     return render_template('auth/login.html')
 
+@bp.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('auth.login'))
+
 @bp.before_app_request
 def load_logged_in_user():
     user_id = session.get('user_id')
@@ -80,3 +85,13 @@ def load_logged_in_user():
         g.user = get_database().execute(
             'SELECT * FROM user WHERE id = ?', (user_id,)
         ).fetchone()
+
+def login_required(view_function):
+    @functools.wraps(view_function)
+    def view_function_wrapper(**kwargs):
+        if g.user is None:
+            return redirect(url_for('auth.login'))
+
+        return view_function(**kwargs)
+
+    return view_function_wrapper

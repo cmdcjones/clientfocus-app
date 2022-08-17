@@ -8,4 +8,5 @@
 {% for client in clients %}
 <div class="client">{{ client['name'] }}</div>
 {% endfor %}
+<a href="{{ url_for('trainer.addclient') }}">Add a new client</a>
 {% endblock %}
