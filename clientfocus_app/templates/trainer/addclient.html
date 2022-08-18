@@ -10,7 +10,7 @@
       <input name="name" id="name" value="{{ request.form['name'] }}" required>
       <label for="age">Client's age:</label>
       <input type="number" name="age" id="age" value="{{ request.form['age'] }}" min="0" required>
-      <label for="date_of_birth">Client's date of birth (YYYY/MM/DD):</label>
+      <label for="date_of_birth">Client's date of birth (MM/DD/YYYY):</label>
       <input name="date_of_birth" id="date_of_birth" value="{{ request.form['date_of_birth'] }}" required>
       <label for="goals">Client's goals:</label>
       <textarea name="goals" id="goals">{{ request.form['goals'] }}</textarea>
