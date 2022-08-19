@@ -93,7 +93,6 @@ def confirm_remove(id):
 
     if request.method == 'POST':
         confirm = request.form['confirm']
-        print(confirm)
         if confirm == 'Yes':
             return redirect(url_for('client.remove', id=client['id']))
         else:
