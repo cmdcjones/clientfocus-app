@@ -85,3 +85,28 @@ def update(id):
             return redirect(url_for('client.update', id=client['id']))
 
     return render_template('client/update.html', client=client)
+
+@bp.route('<int:id>/confirm_remove', methods=('GET', 'POST'))
+@login_required
+def confirm_remove(id):
+    client = get_client(id)
+
+    if request.method == 'POST':
+        confirm = request.form['confirm']
+        print(confirm)
+        if confirm == 'Yes':
+            return redirect(url_for('client.remove', id=client['id']))
+        else:
+            return redirect(url_for('client.index', id=client['id']))
+
+    return render_template('client/confirm_remove.html', client=client)
+
+@bp.route('/<int:id>/remove', methods=('GET', 'POST'))
+@login_required
+def remove(id):
+    client = get_client(id)
+    database = get_database()
+    database.execute('DELETE FROM client WHERE id = ?', (client['id'],))
+    database.commit()
+    flash('Client removed successfully.')
+    return redirect(url_for('trainer.index'))

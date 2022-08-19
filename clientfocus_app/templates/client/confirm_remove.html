@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <a href="{{ url_for('trainer.index') }}">Clients</a>
+     > <a href="{{ url_for('client.index', id=client['id']) }}">{{ client['name'] }}</a>
+     > Remove Client
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <p>Are you sure you want to remove this client?</p>
+        <label for="yes">Yes</label>
+        <input type="radio" id="yes" name="confirm" value="Yes">
+        <label for="no">No</label>
+        <input type="radio" id="no" name="confirm" value="No">
+        <input type="submit" value="Submit">
+    </form>
+{% endblock%}
