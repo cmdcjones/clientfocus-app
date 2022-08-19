@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ client['name'] }} - Update {% endblock %}
+
+{% block header %}
+    <a href="{{ url_for('trainer.index') }}">Clients</a>
+     > <a href="{{ url_for('client.index', id=client['id']) }}">{{ client['name'] }}</a>
+     > Edit Client
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    <h1>Client's First and Last Name:</h1>
+    <p>Current name: {{ client['name'] }}</p>
+    <label for="name">Updated name:</label>
+    <input name="name" id="name" value="{{ request.form['name'] }}">
+    <h1>Client's Age:</h1>
+    <p>Current age: {{ client['age'] }}</p>
+    <label for="age">Updated age:</label>
+    <input type="number" name="age" id="age" value="{{ request.form['age'] }}" min="0">
+    <h1>Client's Date of Birth:</h1>
+    <p>Current date of birth: {{ client['date_of_birth'] }}</p>
+    <label for="date_of_birth">Updated date of birth (MM/DD/YYYY):</label>
+    <input name="date_of_birth" id="date_of_birth" value="{{ request.form['date_of_birth'] }}">
+    <h1>Client's Goals:</h1>
+    <p>Current goals: {{ client['goals'] }}</p>
+    <label for="goals">Updated goals:</label>
+    <textarea name="goals" id="goals">{{ request.form['goals'] }}</textarea>
+    <h1>Client's Notes:</h1>
+    <p>Current additional notes: {{ client['notes'] }}</p>
+    <label for="notes">Updated additional notes:</label>
+    <textarea name="notes" id="notes">{{ request.form['notes'] }}</textarea>
+    <input type="submit" value="Save">
+</form>
+{% endblock%}

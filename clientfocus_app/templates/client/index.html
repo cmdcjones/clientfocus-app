@@ -11,6 +11,6 @@
         <li><a href="{{ url_for('client.info', id=client['id']) }}">Info</a></li>
         <li>Workouts</li>
         <li>Inbody</li>
-        <li>Edit Client</li>
+        <li><a href="{{ url_for('client.update', id=client['id']) }}">Edit Client</a></li>
     </ul>
 {% endblock %}

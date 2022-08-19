@@ -7,6 +7,8 @@ from .auth import login_required
 
 from clientfocus_app.db import get_database
 
+from datetime import datetime
+
 bp = Blueprint('client', __name__, url_prefix='/client')
 
 def get_client(id,):
@@ -41,7 +43,45 @@ def info(id):
 def update(id):
     client = get_client(id)
 
-    #if request.method == 'POST':
-        #age = 
+    if request.method == 'POST':
+        name = request.form['name']
+        age = request.form['age']
+        date_of_birth = request.form['date_of_birth']
+        goals = request.form['goals']
+        notes = request.form['notes']
+        error = None
 
-    #return render_template('client/info.html', client=client)
+        if not name:
+            name = client['name']
+        if not age:
+            age = client['age']
+        if not date_of_birth:
+            date_of_birth = client['date_of_birth']
+        if not goals:
+            goals = client['goals']
+        if not notes:
+            notes = client['notes']
+        try:
+            datetime.strptime(date_of_birth, "%m/%d/%Y")
+        except ValueError:
+            error = 'Client date of birth is not in the correct format!'
+        
+        if error is not None:
+            flash(error)
+        else:
+            database = get_database()
+            database.execute(
+                """UPDATE client
+                    SET name = ?,
+                        age = ?,
+                        date_of_birth = ?,
+                        goals = ?,
+                        notes = ?
+                    WHERE id = ?""",
+                    (name, age, date_of_birth, goals, notes, client['id'])
+            )
+            database.commit()
+            flash("Information updated successfully!")
+            return redirect(url_for('client.update', id=client['id']))
+
+    return render_template('client/update.html', client=client)
