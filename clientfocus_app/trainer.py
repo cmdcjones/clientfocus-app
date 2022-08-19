@@ -17,9 +17,9 @@ def index():
     database = get_database()
     trainer = g.user['id']
     clients = database.execute(
-        """SELECT client.id, name
+        """SELECT name, id
         FROM client
-        INNER JOIN user on client.trainer_id = ?
+        WHERE trainer_id = ?
         ORDER BY name ASC""", (trainer,)
     ).fetchall()
     return render_template('trainer/index.html', clients=clients, trainer=trainer)
