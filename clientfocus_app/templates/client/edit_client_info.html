@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ client['name'] }} - Update {% endblock %}
+{% block title %}{{ client['name'] }} - Edit Client Info {% endblock %}
 
 {% block header %}
     <a href="{{ url_for('trainer.index') }}">Clients</a>
      > <a href="{{ url_for('client.index', id=client['id']) }}">{{ client['name'] }}</a>
-     > Edit Client
+     > Edit Client Info
 {% endblock %}
 
 {% block content %}

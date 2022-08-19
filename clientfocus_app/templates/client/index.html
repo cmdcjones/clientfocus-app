@@ -11,7 +11,7 @@
         <li><a href="{{ url_for('client.info', id=client['id']) }}">Info</a></li>
         <li>Workouts</li>
         <li>Inbody</li>
-        <li><a href="{{ url_for('client.update', id=client['id']) }}">Edit Client</a></li>
+        <li><a href="{{ url_for('client.edit_client_info', id=client['id']) }}">Edit Client Info</a></li>
         <li><a href="{{ url_for('client.confirm_remove', id=client['id']) }}">Remove Client</a></li>
     </ul>
 {% endblock %}

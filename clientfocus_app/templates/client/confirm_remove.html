@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% block title %}{{ client['name'] }} - Remove Client {% endblock %}
+
 {% block header %}
     <a href="{{ url_for('trainer.index') }}">Clients</a>
      > <a href="{{ url_for('client.index', id=client['id']) }}">{{ client['name'] }}</a>

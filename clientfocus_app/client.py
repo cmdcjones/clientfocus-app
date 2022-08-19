@@ -38,9 +38,9 @@ def info(id):
 
     return render_template('client/info.html', client=client)
 
-@bp.route('<int:id>/update', methods=('GET', 'POST'))
+@bp.route('<int:id>/edit_client_info', methods=('GET', 'POST'))
 @login_required
-def update(id):
+def edit_client_info(id):
     client = get_client(id)
 
     if request.method == 'POST':
@@ -82,9 +82,9 @@ def update(id):
             )
             database.commit()
             flash("Information updated successfully!")
-            return redirect(url_for('client.update', id=client['id']))
+            return redirect(url_for('client.edit_client_info', id=client['id']))
 
-    return render_template('client/update.html', client=client)
+    return render_template('client/edit_client_info.html', client=client)
 
 @bp.route('<int:id>/confirm_remove', methods=('GET', 'POST'))
 @login_required
