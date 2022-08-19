@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %} Client - {{ client['name'] }} {% endblock %}
+{% block title %} Client - {{ client['first_name'] }} {{ client['last_name'] }} {% endblock %}
 
 {% block header %}
-    <a href="{{ url_for('trainer.index') }}">Clients</a> > {{ client['name'] }}
+    <a href="{{ url_for('trainer.index') }}">Clients</a> > {{ client['first_name'] }} {{ client['last_name'] }}
 {% endblock %}
 
 {% block content%}

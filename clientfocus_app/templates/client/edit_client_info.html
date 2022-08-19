@@ -1,27 +1,25 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ client['name'] }} - Edit Client Info {% endblock %}
+{% block title %}{{ client['first_name'] }} {{ client['last_name'] }} - Edit Client Info {% endblock %}
 
 {% block header %}
     <a href="{{ url_for('trainer.index') }}">Clients</a>
-     > <a href="{{ url_for('client.index', id=client['id']) }}">{{ client['name'] }}</a>
+     > <a href="{{ url_for('client.index', id=client['id']) }}">{{ client['first_name'] }} {{ client['last_name'] }}</a>
      > Edit Client Info
 {% endblock %}
 
 {% block content %}
 <form method="post">
     <h1>Client's First and Last Name:</h1>
-    <p>Current name: {{ client['name'] }}</p>
-    <label for="name">Updated name:</label>
-    <input name="name" id="name" value="{{ request.form['name'] }}">
+    <p>Current name: {{ client['first_name'] }} {{ client['last_name'] }}</p>
+    <label for="first_name">Updated first name:</label>
+    <input name="first_name" id="first_name" value="{{ request.form['first_name'] }}">
+    <label for="last_name">Updated last name:</label>
+    <input name="last_name" id="last_name" value="{{ request.form['last_name'] }}">
     <h1>Client's Age:</h1>
     <p>Current age: {{ client['age'] }}</p>
     <label for="age">Updated age:</label>
     <input type="number" name="age" id="age" value="{{ request.form['age'] }}" min="0">
-    <h1>Client's Date of Birth:</h1>
-    <p>Current date of birth: {{ client['date_of_birth'] }}</p>
-    <label for="date_of_birth">Updated date of birth (MM/DD/YYYY):</label>
-    <input name="date_of_birth" id="date_of_birth" value="{{ request.form['date_of_birth'] }}">
     <h1>Client's Goals:</h1>
     <p>Current goals: {{ client['goals'] }}</p>
     <label for="goals">Updated goals:</label>

@@ -13,7 +13,7 @@ bp = Blueprint('client', __name__, url_prefix='/client')
 
 def get_client(id,):
     client = get_database().execute(
-        """SELECT id, name, age, date_of_birth, goals, notes
+        """SELECT id, first_name, last_name, age, goals, notes
         FROM client
         WHERE id = ?""",
         (id,)
@@ -44,27 +44,23 @@ def edit_client_info(id):
     client = get_client(id)
 
     if request.method == 'POST':
-        name = request.form['name']
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
         age = request.form['age']
-        date_of_birth = request.form['date_of_birth']
         goals = request.form['goals']
         notes = request.form['notes']
         error = None
 
-        if not name:
-            name = client['name']
+        if not first_name:
+            first_name = client['first_name']
+        if not last_name:
+            last_name = client['last_name']
         if not age:
             age = client['age']
-        if not date_of_birth:
-            date_of_birth = client['date_of_birth']
         if not goals:
             goals = client['goals']
         if not notes:
             notes = client['notes']
-        try:
-            datetime.strptime(date_of_birth, "%m/%d/%Y")
-        except ValueError:
-            error = 'Client date of birth is not in the correct format!'
         
         if error is not None:
             flash(error)
@@ -72,13 +68,13 @@ def edit_client_info(id):
             database = get_database()
             database.execute(
                 """UPDATE client
-                    SET name = ?,
+                    SET first_name = ?,
+                        last_name = ?,
                         age = ?,
-                        date_of_birth = ?,
                         goals = ?,
                         notes = ?
                     WHERE id = ?""",
-                    (name, age, date_of_birth, goals, notes, client['id'])
+                    (first_name, last_name, age, goals, notes, client['id'])
             )
             database.commit()
             flash("Information updated successfully!")

@@ -10,9 +10,9 @@ CREATE TABLE user (
 CREATE TABLE client (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     trainer_id INTEGER NOT NULL,
-    name TEXT NOT NULL,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
     age INTEGER NOT NULL,
-    date_of_birth TEXT NOT NULL,
     goals TEXT,
     notes TEXT,
     FOREIGN KEY (trainer_id) REFERENCES user (id)
