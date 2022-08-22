@@ -20,8 +20,10 @@ def index():
         """SELECT id, first_name, last_name
         FROM client
         WHERE trainer_id = ?
-        ORDER BY last_name ASC""", (trainer,)
+        ORDER BY last_name ASC
+        LIMIT 5""", (trainer,)
     ).fetchall()
+    flash('flashed message here')
     return render_template('trainer/index.html', clients=clients, trainer=trainer)
 
 @bp.route('/addclient', methods=('GET', 'POST'))
@@ -29,8 +31,8 @@ def index():
 def addclient():
     if request.method == 'POST':
         trainer_id = g.user['id']
-        first_name = request.form['first_name']
-        last_name = request.form['last_name']
+        first_name = request.form['first_name'].capitalize()
+        last_name = request.form['last_name'].capitalize()
         age = request.form['age']
         goals = request.form['goals']
         notes = request.form['notes']

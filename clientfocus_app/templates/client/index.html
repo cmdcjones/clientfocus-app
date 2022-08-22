@@ -3,15 +3,25 @@
 {% block title %} Client - {{ client['first_name'] }} {{ client['last_name'] }} {% endblock %}
 
 {% block header %}
-    <a href="{{ url_for('trainer.index') }}">Clients</a> > {{ client['first_name'] }} {{ client['last_name'] }}
+    <a href="{{ url_for('trainer.index') }}">Clients</a><span class="breadcrumb"> ></span> {{ client['first_name'] }} {{ client['last_name'] }}
 {% endblock %}
 
 {% block content%}
-    <ul>
-        <li><a href="{{ url_for('client.info', id=client['id']) }}">Info</a></li>
-        <li>Workouts</li>
-        <li>Inbody</li>
-        <li><a href="{{ url_for('client.edit_client_info', id=client['id']) }}">Edit Client Info</a></li>
-        <li><a href="{{ url_for('client.confirm_remove', id=client['id']) }}">Remove Client</a></li>
-    </ul>
+<div class="client-button-container">
+    <div class="client-button-item">
+        <a href="{{ url_for('client.info', id=client['id']) }}">Info</a>
+    </div>
+    <div class="client-button-item">
+        Workouts
+    </div>
+    <div class="client-button-item">
+        Inbody
+    </div>
+    <div class="client-button-item">
+        <a href="{{ url_for('client.edit_client_info', id=client['id']) }}">Edit Client Info</a>
+    </div>
+    <div class="client-button-item">
+        <a href="{{ url_for('client.confirm_remove', id=client['id']) }}">Remove Client</a>
+    </div>
+</div>
 {% endblock %}
