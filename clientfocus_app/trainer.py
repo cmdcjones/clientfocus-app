@@ -7,8 +7,6 @@ from .auth import login_required
 
 from clientfocus_app.db import get_database
 
-from datetime import datetime
-
 bp = Blueprint('trainer', __name__)
 
 @bp.route('/')
@@ -23,7 +21,7 @@ def index():
         ORDER BY last_name ASC
         LIMIT 5""", (trainer,)
     ).fetchall()
-    flash('flashed message here')
+    
     return render_template('trainer/index.html', clients=clients, trainer=trainer)
 
 @bp.route('/addclient', methods=('GET', 'POST'))

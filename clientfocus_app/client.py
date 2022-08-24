@@ -7,8 +7,6 @@ from .auth import login_required
 
 from clientfocus_app.db import get_database
 
-from datetime import datetime
-
 bp = Blueprint('client', __name__, url_prefix='/client')
 
 def get_client(id,):

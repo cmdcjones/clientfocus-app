@@ -9,6 +9,7 @@ html {
     font-family: 'Montserrat', sans-serif;
     background-color: var(--main-bg-color);
     margin: 23px;
+    max-width: 390px;
 }
 
 a, a:visited {
@@ -17,7 +18,6 @@ a, a:visited {
 }
 
 #nav-container {
-    max-width: 390px;
     height: 50px;
     position: relative;
 }
