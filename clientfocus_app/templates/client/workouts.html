@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ client['first_name'] }} {{ client['last_name'] }} - Info {% endblock %}
+
+{% block header %}
+    <a href="{{ url_for('trainer.index') }}">Clients</a>
+     > <a href="{{ url_for('client.index', id=client['id']) }}">{{ client['first_name'] }} {{ client['last_name'] }}</a>
+     > Workouts
+     <h2>Select a workout or create a new one:</h2>
+{% endblock %}
+
+{% block content %}
+<div class="workout-container">
+    {% for workout in workouts %}
+    <div class="workout-item">
+        <a href="{{ url_for('client.index', id=client['id']) }}"><span>{{ client['first_name'] }} {{ client['last_name'] }}</span></a>
+    </div>
+    {% endfor %}
+</div>
+<div class="add-client-container">
+    <a href="{{ url_for('trainer.addclient') }}"><span class="add-client-btn">Add a new client</span></a>
+</div>
+{% endblock %}

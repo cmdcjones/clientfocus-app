@@ -9,6 +9,29 @@ from clientfocus_app.db import get_database
 
 bp = Blueprint('client', __name__, url_prefix='/client')
 
+def get_all_workouts(client_id):
+    workouts = get_database().execute(
+        """SELECT id, client_id, name, date
+            FROM workout
+            WHERE id = ?
+            ORDER BY date DESC
+            LIMIT 10""", (client_id,)
+    ).fetchall()
+
+    return workouts
+
+def get_workout(client_id):
+    workout = get_database().execute(
+        """SELECT id, client_id, name, date
+            FROM workout
+            WHERE id = ?""", (client_id,)
+    ).fetchone()
+
+    if workout is None:
+        abort(404, f'Sorry, that workout does not exist!')
+
+    return workout
+
 def get_client(id,):
     client = get_database().execute(
         """SELECT id, first_name, last_name, age, goals, notes
@@ -97,9 +120,16 @@ def confirm_remove(id):
 @bp.route('/<int:id>/remove', methods=('GET', 'POST'))
 @login_required
 def remove(id):
-    client = get_client(id)
     database = get_database()
-    database.execute('DELETE FROM client WHERE id = ?', (client['id'],))
+    database.execute('DELETE FROM client WHERE id = ?', (id,))
     database.commit()
     flash('Client removed successfully.')
     return redirect(url_for('trainer.index'))
+
+@bp.route('/<int:id>/workouts')
+@login_required
+def workouts(id):
+    client = get_client(id)
+    workouts = get_all_workouts(id)
+
+    return render_template('client/workouts.html', client=client, workouts=workouts)
