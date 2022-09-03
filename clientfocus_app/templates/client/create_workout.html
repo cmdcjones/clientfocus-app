@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Create new workout{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+      <label for="exercise_name">Exercise name:</label>
+      <input name="exercise_name" id="exercise_name" value="{{ request.form['exercise_name'] }}" required>
+      <label for="set_one_reps">Set one reps:</label>
+      <input name="set_one_reps" id="set_one_reps" value="{{ request.form['set_one_reps'] }}" required>
+      <label for="set_one_weight">Set one weight:</label>
+      <input name="set_one_weight" id="set_one_weight" value="{{ request.form['set_one_weight'] }}" required>
+      <label for="set_two_reps">Set two reps:</label>
+      <input name="set_two_reps" id="set_two_reps" value="{{ request.form['set_two_reps'] }}" required>
+      <label for="set_two_weight">Set two weight:</label>
+      <input name="set_two_weight" id="set_two_weight" value="{{ request.form['set_two_weight'] }}" required>
+      <label for="set_three_reps">Set three reps:</label>
+      <input name="set_three_reps" id="set_three_reps" value="{{ request.form['set_three_reps'] }}" required>
+      <label for="set_three_weight">Set three weight:</label>
+      <input name="set_three_weight" id="set_three_weight" value="{{ request.form['set_three_weight'] }}" required>
+      <label for="set_four_reps">Set four reps:</label>
+      <input name="set_four_reps" id="set_four_reps" value="{{ request.form['set_four_reps'] }}" required>
+      <label for="set_four_weight">Set four weight:</label>
+      <input name="set_four_weight" id="set_four_weight" value="{{ request.form['set_four_weight'] }}" required>
+      <label for="set_five_reps">Set five reps:</label>
+      <input name="set_five_reps" id="set_five_reps" value="{{ request.form['set_five_reps'] }}" required>
+      <label for="set_five_weight">Set five weight:</label>
+      <input name="set_five_weight" id="set_five_weight" value="{{ request.form['set_five_weight'] }}" required>
+      <input type="submit" value="Save">
+  </form>
+{% endblock %}

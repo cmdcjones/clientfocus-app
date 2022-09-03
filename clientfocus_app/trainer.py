@@ -24,9 +24,9 @@ def index():
     
     return render_template('trainer/index.html', clients=clients, trainer=trainer)
 
-@bp.route('/addclient', methods=('GET', 'POST'))
+@bp.route('/add_client', methods=('GET', 'POST'))
 @login_required
-def addclient():
+def add_client():
     if request.method == 'POST':
         trainer_id = g.user['id']
         first_name = request.form['first_name'].capitalize()
@@ -56,4 +56,4 @@ def addclient():
             flash('New client added successfully!')
             return redirect(url_for('trainer.index'))
 
-    return render_template('trainer/addclient.html')
+    return render_template('trainer/add_client.html')

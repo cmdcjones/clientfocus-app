@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ client['first_name'] }} {{ client['last_name'] }} - Info {% endblock %}
+{% block title %}{{ client['first_name'] }} {{ client['last_name'] }} - Workouts {% endblock %}
 
 {% block header %}
     <a href="{{ url_for('trainer.index') }}">Clients</a>
@@ -17,7 +17,15 @@
     </div>
     {% endfor %}
 </div>
-<div class="add-client-container">
-    <a href="{{ url_for('trainer.addclient') }}"><span class="add-client-btn">Add a new client</span></a>
+<div class="navigation-btn">
+    <div id="navigation-items">
+        <a href="#">Search for a previous workout</a>
+        <p>Create a new workout</p>
+        <form method="post">
+            <label for="workout_name">Workout name:</label>
+            <input name="workout_name" id="workout_name" value="{{ request.form['workout_name'] }}" required>
+            <input type="submit" value="Add exercises to this workout!">
+        </form>
+    </div>
 </div>
 {% endblock %}

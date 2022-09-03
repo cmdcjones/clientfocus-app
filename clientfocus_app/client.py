@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
@@ -126,10 +127,38 @@ def remove(id):
     flash('Client removed successfully.')
     return redirect(url_for('trainer.index'))
 
-@bp.route('/<int:id>/workouts')
+@bp.route('/<int:id>/workouts', methods=('GET', 'POST'))
 @login_required
 def workouts(id):
     client = get_client(id)
     workouts = get_all_workouts(id)
+    
+    if request.method == 'POST':
+        workout_name = request.form['workout_name']
+
+        return redirect(url_for('client.create_workout', id=client['id'], workout_name=workout_name))
 
     return render_template('client/workouts.html', client=client, workouts=workouts)
+
+@bp.route('<int:id>/workouts/<string:workout_name>/create_workout', methods=('GET', 'POST'))
+@login_required
+def create_workout(id, workout_name):
+    client = get_client(id)
+
+    if request.method == 'POST':
+        exercise_name = request.form['exercise_name']
+        set_one_reps = request.form['set_one_reps']
+        set_one_weight = request.form['set_one_weight']
+        set_two_reps = request.form['set_two_reps']
+        set_two_weight = request.form['set_two_weight']
+        set_three_reps = request.form['set_three_reps']
+        set_three_weight = request.form['set_three_weight']
+        set_four_reps = request.form['set_four_reps']
+        set_four_weight = request.form['set_four_weight']
+        set_five_reps = request.form['set_five_reps']
+        set_five_weight = request.form['set_five_weight']
+        error = None
+
+
+    
+    return render_template('client/create_workout.html', client=client)
