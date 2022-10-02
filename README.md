@@ -24,7 +24,7 @@ pip install -r requirements.txt
 Create a dotenv file in the root `clientfocus-app` folder with no name and the `.env` extension. Place the following text into the file:
 
 ```
-export FLASK_APP=clientfocus-app
+export FLASK_APP=clientfocus_app
 export FLASK_DEBUG=true
 ```
 
