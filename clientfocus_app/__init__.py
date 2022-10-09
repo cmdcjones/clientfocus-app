@@ -9,6 +9,11 @@ def create_app():
     CONFIG_TYPE = os.getenv('CONFIG_TYPE', default='config.DevelopmentConfig')
     app.config.from_object(CONFIG_TYPE)
  
+    try:
+        os.makedirs(app.instance_path)
+    except OSError:
+        pass
+
     from . import db
     db.init_app(app)
 
